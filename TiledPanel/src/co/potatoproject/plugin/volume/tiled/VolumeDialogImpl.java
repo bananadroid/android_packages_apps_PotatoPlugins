@@ -195,6 +195,8 @@ public class VolumeDialogImpl extends PanelSideAware implements VolumeDialog {
     private Drawable mSwitchStreamSelectedDrawable;
     private boolean mActiveStreamManuallyModified = false;
 
+    private boolean mLeftVolumeRocker;
+
     public VolumeDialogImpl() {}
 
     @Override
@@ -209,6 +211,7 @@ public class VolumeDialogImpl extends PanelSideAware implements VolumeDialog {
         mAccessibilityMgr = mContext.getSystemService(AccessibilityManager.class);
         mShowActiveStreamOnly = showActiveStreamOnly();
         mHasSeenODICaptionsTooltip = true;
+        mLeftVolumeRocker = Settings.System.getInt(mContext.getContentResolver(), Settings.System.VOLUME_PANEL_ON_LEFT, 0) == 1;
         initObserver(pluginContext, sysuiContext);
     }
 
@@ -1711,7 +1714,7 @@ public class VolumeDialogImpl extends PanelSideAware implements VolumeDialog {
     }
 
     private boolean isAudioPanelOnLeftSide() {
-        return mPanelOnLeftSide;
+        return mLeftVolumeRocker;
     }
 
     private static class VolumeRow {

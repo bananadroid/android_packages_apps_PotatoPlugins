@@ -182,7 +182,7 @@ public class VolumeDialogImpl implements VolumeDialog {
     private View mODICaptionsTooltipView = null;
 
     private boolean mExpanded;
-	private boolean mLeftVolumeRocker;
+    private boolean mLeftVolumeRocker;
 
     public VolumeDialogImpl() {}
 
@@ -197,7 +197,7 @@ public class VolumeDialogImpl implements VolumeDialog {
         mActivityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         mAccessibilityMgr = mContext.getSystemService(AccessibilityManager.class);
         mShowActiveStreamOnly = showActiveStreamOnly();
-		mLeftVolumeRocker = mSysUIContext.getResources().getBoolean(mSysUIR.bool("config_audioPanelOnLeftSide"));
+        mLeftVolumeRocker = Settings.System.getInt(mContext.getContentResolver(), Settings.System.VOLUME_PANEL_ON_LEFT, 0) == 1;
         mHasSeenODICaptionsTooltip =
                 Prefs.getBoolean(sysuiContext, Prefs.Key.HAS_SEEN_ODI_CAPTIONS_TOOLTIP, false);
     }
